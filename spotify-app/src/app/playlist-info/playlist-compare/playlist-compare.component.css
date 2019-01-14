@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  flex-direction: row;
+}
+
+.add-playlist {
+  width: 300px;
+  height: 350px;
+  border: 1px black dashed;
+  text-align: center;
+
+}
+
+.add-button {
+  margin-top: 50%;
+}

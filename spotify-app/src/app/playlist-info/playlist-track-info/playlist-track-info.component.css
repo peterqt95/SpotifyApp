@@ -1,0 +1,26 @@
+.pv-hidden {
+  display: none;
+}
+
+table {
+  width: 100%;
+}
+
+.playlist-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.audio-analysis {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.audio-analysis .flex-item {
+  flex: 0 0 30%;
+}

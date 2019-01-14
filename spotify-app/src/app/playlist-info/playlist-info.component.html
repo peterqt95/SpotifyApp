@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="header">
+    <div class="display-logo">
+      <h3>Peter's Spotify App</h3>
+    </div>
+    <div class="login">
+      <div class="login-left">
+          <div class="user-name">
+            <a href="{{userInfo['external_urls']['spotify']}}">{{userInfo["display_name"]}}</a>
+          </div>
+          <div class="user-actions">
+            <span>Followers: {{userInfo['followers']['total']}}</span>
+          </div>
+        </div>
+        <div class="login-right">
+          <img *ngIf="userInfo['images']?.length > 0" src="{{userInfo['images']}}">
+          <img *ngIf="!(userInfo['images']?.length > 0)" src="https://s3.amazonaws.com/spotify.me/assets/images/user-placeholder.jpg">
+        </div>
+    </div>
+  </div>
+  <div class="playlists">
+    <mat-card class="playlist-item" *ngFor="let playlist of playlistsInfo">
+      <mat-card-header>
+        <mat-card-title>{{playlist['name']}}</mat-card-title>
+      </mat-card-header>
+      <a routerLink="/playlists/{{playlist['id']}}"><img mat-card-img src="{{playlist['images'][1]['url']}}" alt="Album Photo"></a>
+      <mat-card-content>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button href="{{playlist['external_urls']['spotify']}}" target="_blank">Open</a>
+        <a mat-button routerLink="/playlists/compare/{{playlist['id']}}">Compare</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="container">
+  <app-loader *ngIf="!isLoaded"></app-loader>
+  <div *ngIf="isLoaded">
+    <h1>A Spotify App</h1>
+    <button mat-raised-button color="primary" (click)="userLogin()">Login</button>
+  </div>
+</div>

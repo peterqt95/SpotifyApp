@@ -1,0 +1,75 @@
+<div class="playlist-container">
+  <div class="playlist">
+    <mat-card class="playlist-item" *ngIf="playlist">
+      <div class="playlist-header">
+        <mat-card-header>
+          <mat-card-title>{{playlist['name']}}</mat-card-title>
+          <mat-card-subtitle>By {{userInfo['display_name']}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-img src="{{playlist['images'][1]['url']}}" alt="Album Photo">
+      </div>
+      <!-- ToDo - Find a graph library to display this so it doesn't look like shit -->
+      <mat-card-content class="audio-analysis">
+        <div class="flex-item">
+          Acousticness: {{playlist['audio-features']['acousticness']}}
+        </div>
+        <div class="flex-item">
+          Danceability: {{playlist['audio-features']['danceability']}}
+        </div>
+        <div class="flex-item">
+          Energy: {{playlist['audio-features']['energy']}}
+        </div>
+        <div class="flex-item">
+          Instrumentalness: {{playlist['audio-features']['instrumentalness']}}
+        </div>
+        <div class="flex-item">
+          Liveness: {{playlist['audio-features']['liveness']}}
+        </div>
+        <div class="flex-item">
+          Loudness: {{playlist['audio-features']['loudness']}}
+        </div>
+        <div class="flex-item">
+          Speechiness: {{playlist['audio-features']['speechiness']}}
+        </div>
+        <div class="flex-item">
+          Tempo: {{playlist['audio-features']['tempo']}}
+        </div>
+        <div class="flex-item">
+          Valence: {{playlist['audio-features']['valence']}}
+        </div>
+      </mat-card-content>
+      <mat-card-content>
+        <table id="track-table" mat-table [dataSource]="playlistTracks" class="mat-elevation-z8">
+          <ng-container matColumnDef="play">
+            <th mat-header-cell *matHeaderCellDef>Play</th>
+            <td mat-cell *matCellDef="let element">
+              <div #preview class="spotify-preview" (click)="togglePreview($event)">
+                <audio src="{{element['track']['preview_url']}}"></audio>
+                <i class="material-icons pv-play">play_arrow</i>
+                <i class="material-icons pv-pause pv-hidden">pause</i>
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{element['track']['name']}}</td>
+          </ng-container>
+          <ng-container matColumnDef="artist">
+            <th mat-header-cell *matHeaderCellDef>Artist</th>
+            <td mat-cell *matCellDef="let element">{{element['track']['artists'][0]['name']}}</td>
+          </ng-container>
+          <ng-container matColumnDef="duration">
+            <th mat-header-cell *matHeaderCellDef>Duration</th>
+            <td mat-cell *matCellDef="let element">{{element['track']['duration_ms']}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+        </table>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button href="{{playlist['external_urls']['spotify']}}" target="_blank">Open</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

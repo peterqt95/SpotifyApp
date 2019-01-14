@@ -1,0 +1,5 @@
+# Ignore this test app
+spotify-grab-token
+
+# Ignore node modules
+spotify-app/node_modules
